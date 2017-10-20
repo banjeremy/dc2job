@@ -1,5 +1,5 @@
 # dc2job
-Tool for converting OpenShift `DeploymentConfig`s to `Job`s
+Tool for converting OpenShift `DeploymentConfigs` to `Jobs`
 
 ## Environment Variables
 Before invoking the tool, make sure you set the following environment variables:
