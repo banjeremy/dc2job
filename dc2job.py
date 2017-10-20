@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json
 import os
 import random
@@ -10,6 +12,10 @@ import yaml
 host = os.environ['OPENSHIFT_HOST']
 token = os.environ['TOKEN']
 
+if host is None:
+    host = "127.0.0.1:8443"
+if token is None:
+    token = ""
 
 req_headers = {
     'Authorization': 'Bearer ' + token,
