@@ -6,8 +6,6 @@ import random
 import requests
 import string
 import sys
-import yaml
-
 
 host = os.environ['OPENSHIFT_HOST']
 token = os.environ['TOKEN']
@@ -19,13 +17,9 @@ if token is None:
 
 req_headers = {
     'Authorization': 'Bearer ' + token,
-    'Accept': 'application/yaml',
-    'Content-Type': 'application/yaml'
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
 }
-
-
-def log(obj):
-    print(yaml.dump(obj))
 
 
 def gen_rand_str(n):
@@ -35,8 +29,8 @@ def gen_rand_str(n):
 
 
 def load_job_template():
-    with open('job_template.yaml', 'r') as job_template_file:
-        job_template = yaml.load(job_template_file)
+    with open('job_template.json', 'r') as job_template_file:
+        job_template = json.loads(job_template_file)
     return job_template
 
 
@@ -49,7 +43,7 @@ def get_deploy_config(namespace, name):
         verify=False
     )
 
-    deploy_config = yaml.load(res.text)
+    deploy_config = json.loads(res.text)
     return deploy_config
 
 
@@ -80,9 +74,8 @@ def submit_job(namespace, job):
         host + endpoint,
         headers=req_headers,
         data=json.dumps(job),
-        verify=False
-        # cert="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-        # cert="/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
+        verify=False,
+        cert="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     )
 
     return res.text

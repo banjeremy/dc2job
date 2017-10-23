@@ -10,7 +10,6 @@ pipeline {
   stages {
     stage('Run') {
       steps {
-        sh "easy_install yaml"
         sh "python dc2job.py ${params.NAMESPACE} ${params.DC_NAME}"
       }
     }
