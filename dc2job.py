@@ -41,7 +41,7 @@ def load_job_template():
 
 
 def get_deploy_config(namespace, name):
-    endpoint = f"/oapi/v1/namespaces/{namespace}/deploymentconfigs/{name}"
+    endpoint = "/oapi/v1/namespaces/%(namespace)s/deploymentconfigs/%(name)s" % locals()
 
     res = requests.get(
         host + endpoint,
@@ -74,7 +74,7 @@ def dc_to_job(dc, job_template):
 
 
 def submit_job(namespace, job):
-    endpoint = f"/apis/batch/v1/namespaces/{namespace}/jobs"
+    endpoint = "/apis/batch/v1/namespaces/%(namespace)s/jobs" % locals()
 
     res = requests.post(
         host + endpoint,
