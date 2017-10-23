@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Run') {
       steps {
-        sh "python dc2job.py openshift.default.svc.cluster.local $(cat /var/run/secrets/kubernetes.io/serviceaccount/token) ${params.NAMESPACE} ${params.DC_NAME}"
+        sh "python dc2job.py openshift.default.svc.cluster.local ${cat /var/run/secrets/kubernetes.io/serviceaccount/token} ${params.NAMESPACE} ${params.DC_NAME}"
       }
     }
   }
