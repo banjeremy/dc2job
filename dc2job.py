@@ -79,8 +79,8 @@ def submit_job(namespace, job):
         host + endpoint,
         headers=req_headers,
         data=json.dumps(job),
-        verify=False,
-        cert="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+        verify=False
+        # cert="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     )
 
     res.raise_for_status()
