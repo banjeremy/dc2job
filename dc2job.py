@@ -82,7 +82,7 @@ def submit_job(namespace, job):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 3:
         print("usage:\tpython submit_job.py <namespace> <name>\n")
     else:
         namespace = sys.argv[1]
