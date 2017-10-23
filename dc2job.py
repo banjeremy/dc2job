@@ -24,7 +24,7 @@ req_headers = {
 
 
 def gen_rand_str(n):
-    random_string = urlsafe_b64encode(os.urandom(len))
+    random_string = urlsafe_b64encode(os.urandom(n))
     random_string = re.sub(r'(-|_|=)', '', random_string)
     return random_string
 
