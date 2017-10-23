@@ -44,14 +44,14 @@ def get_deploy_config(namespace, name):
         verify=False
     )
 
+    res.raise_for_status()
+
     deploy_config = json.loads(res.text)
     return deploy_config
 
 
 def dc_to_job(dc, job_template):
     unique_str = gen_rand_str(8)
-
-    print(dc)
 
     for container in dc['spec']['template']['spec']['containers']:
         container['name'] = container['name'] + '-' + unique_str
@@ -80,6 +80,8 @@ def submit_job(namespace, job):
         verify=False,
         cert="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     )
+
+    res.raise_for_status()
 
     return res.text
 
