@@ -1,0 +1,13 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+  },
+  "spec": {
+    "completions": 1,
+    "parallelism": 1,
+    "activeDeadlineSeconds": 180,
+    "template": {
+    }
+  }
+}
