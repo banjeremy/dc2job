@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import random
 import requests
 import string
 import sys
+
+host = os.environ['OPENSHIFT_HOST']
+token = os.environ['TOKEN']
+
+if host is None:
+    host = "127.0.0.1:8443"
+if token is None:
+    token = ""
 
 req_headers = {
     'Authorization': 'Bearer ' + token,
@@ -74,12 +83,10 @@ def submit_job(namespace, job):
 
 if __name__ == "__main__":
     if len(sys.argv) < 5:
-        print("usage:\tpython submit_job.py <host> <token> <namespace> <name>\n")
+        print("usage:\tpython submit_job.py <namespace> <name>\n")
     else:
-        host = sys.argv[1]
-        token = sys.argv[2]
-        namespace = sys.argv[3]
-        name = sys.argv[4]
+        namespace = sys.argv[1]
+        name = sys.argv[2]
 
         job_template = load_job_template()
         dc = get_deploy_config(namespace, name)
