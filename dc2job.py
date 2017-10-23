@@ -30,7 +30,7 @@ def gen_rand_str(n):
 
 def load_job_template():
     with open('job_template.json', 'r') as job_template_file:
-        job_template = json.loads(job_template_file)
+        job_template = json.load(job_template_file)
     return job_template
 
 
