@@ -44,6 +44,8 @@ def get_deploy_config(namespace, name):
         verify=False
     )
 
+    print(res.text)
+
     res.raise_for_status()
 
     deploy_config = json.loads(res.text)
