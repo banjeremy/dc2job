@@ -1,17 +1,17 @@
 pipeline {
-    agent any
-    parameters {
-      string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+  agent any
+  parameters {
+    string(name: 'NAMESPACE', defaultValue: 'my-namespace', description: 'What namespace is the DeploymentConfig in?')
+    string(name: 'DC_NAME', defaultValue: 'my-deployment-config', description: 'What is the name of the DeploymentConfig?')
+  }
+  triggers {
+    cron('* * * * *')
+  }
+  stages {
+    stage('Run') {
+      steps {
+        echo "python dc2job.py ${params.NAMESPACE} ${params.DC_NAME}"
+      }
     }
-    triggers {
-        cron('* * * * *')
-    }
-    stages {
-        stage('Run') {
-            steps {
-                echo "python dc2job.py ${params.NAMESPACE} ${params.DC_NAME}"
-            }
-        }
-    }
+  }
 }
