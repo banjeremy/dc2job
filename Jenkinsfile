@@ -10,6 +10,7 @@ pipeline {
   stages {
     stage('Run') {
       steps {
+        sh "echo ${TOKEN}"
         sh "python dc2job.py ${params.NAMESPACE} ${params.DC_NAME}"
       }
     }
