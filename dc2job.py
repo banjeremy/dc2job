@@ -51,6 +51,8 @@ def get_deploy_config(namespace, name):
 def dc_to_job(dc, job_template):
     unique_str = gen_rand_str(8)
 
+    print(dc)
+
     for container in dc['spec']['template']['spec']['containers']:
         container['name'] = container['name'] + '-' + unique_str
 
