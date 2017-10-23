@@ -12,9 +12,9 @@ host = os.environ['OPENSHIFT_HOST']
 token = os.environ['TOKEN']
 
 if host is None:
-    host = "127.0.0.1:8443"
+    raise EnvironmentError('OPENSHIFT_HOST environment variable must be set.')
 if token is None:
-    token = ""
+    raise EnvironmentError('TOKEN environment variable must be set.')
 
 req_headers = {
     'Authorization': 'Bearer ' + token,
