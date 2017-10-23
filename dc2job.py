@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
+from base64 import urlsafe_b64encode
 import json
 import os
-import random
+import re
 import requests
 import string
 import sys
@@ -23,9 +24,9 @@ req_headers = {
 
 
 def gen_rand_str(n):
-    return '' \
-        .join(random.choices(string.ascii_uppercase + string.digits, k=n)) \
-        .lower()
+    random_string = urlsafe_b64encode(os.urandom(len))
+    random_string = re.sub(r'(-|_|=)', '', random_string)
+    return random_string
 
 
 def load_job_template():
